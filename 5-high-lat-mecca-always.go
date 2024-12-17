@@ -13,7 +13,7 @@ func AlwaysMecca() HighLatitudeAdapter {
 	return highLatAlwaysMecca
 }
 
-func highLatAlwaysMecca(cfg Config, year int, schedules []Schedule) []Schedule {
+func highLatAlwaysMecca(cfg Config, year int, month int, schedules []Schedule) []Schedule {
 	// Calculate schedule for Mecca
 	meccaTz, _ := time.LoadLocation("Asia/Riyadh")
 	meccaCfg := Config{
@@ -22,7 +22,7 @@ func highLatAlwaysMecca(cfg Config, year int, schedules []Schedule) []Schedule {
 		Timezone:           meccaTz,
 		TwilightConvention: cfg.TwilightConvention,
 		AsrConvention:      cfg.AsrConvention}
-	meccaSchedules, _ := calcNormal(meccaCfg, year)
+	meccaSchedules, _ := calcNormal(meccaCfg, year, month)
 
 	// Apply schedules to current location, by matching it with duration in Mecca
 	// using transit time (noon) as the base.
