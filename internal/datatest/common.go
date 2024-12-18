@@ -5,7 +5,7 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/hablullah/go-prayer"
+	"github.com/dtykrnt/go-prayer"
 )
 
 var rxDT = regexp.MustCompile(`(\d{4})-(\d{2})-(\d{2}) (\d{2}):(\d{2}):(\d{2})`)

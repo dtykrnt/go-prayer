@@ -3,7 +3,7 @@ package main
 import (
 	"time"
 
-	"github.com/hablullah/go-prayer"
+	"github.com/dtykrnt/go-prayer"
 )
 
 type Location struct {

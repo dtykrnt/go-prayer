@@ -3,7 +3,7 @@ package datatest
 import (
 	"time"
 
-	"github.com/hablullah/go-prayer"
+	"github.com/dtykrnt/go-prayer"
 )
 
 var tzJakarta, _ = time.LoadLocation("Asia/Jakarta")

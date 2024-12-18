@@ -5,8 +5,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/hablullah/go-prayer"
-	"github.com/hablullah/go-prayer/internal/datatest"
+	"github.com/dtykrnt/go-prayer"
+	"github.com/dtykrnt/go-prayer/internal/datatest"
 )
 
 func TestCalculate(t *testing.T) {
