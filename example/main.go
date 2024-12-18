@@ -8,7 +8,7 @@ import (
 )
 
 func main() {
-	// Calculate prayer schedule in Jakarta for 2023.
+	// Calculate prayer schedule in Jakarta for 2024.
 	asiaJakarta, _ := time.LoadLocation("Asia/Jakarta")
 	jakartaSchedules, _ := prayer.Calculate(prayer.Config{
 		Latitude:           -6.14,
@@ -17,10 +17,10 @@ func main() {
 		TwilightConvention: prayer.Kemenag(),
 		AsrConvention:      prayer.Shafii,
 		PreciseToSeconds:   true,
-	}, 2023)
+	}, 2024, 1)
 	print(jakartaSchedules)
 
-	// Calculate prayer schedule in London for 2023.
+	// Calculate prayer schedule in London for 2024.
 	// Since London in higher latitude, make sure to enable the adapter.
 	europeLondon, _ := time.LoadLocation("Europe/London")
 	londonSchedules, _ := prayer.Calculate(prayer.Config{
@@ -31,7 +31,7 @@ func main() {
 		AsrConvention:       prayer.Shafii,
 		HighLatitudeAdapter: prayer.NearestLatitude(),
 		PreciseToSeconds:    true,
-	}, 2023)
+	}, 2024, 2)
 	print(londonSchedules)
 }
 

@@ -47,6 +47,6 @@ func getSchedules(loc Location) []prayer.Schedule {
 		AsrConvention:       prayer.Shafii,
 		HighLatitudeAdapter: prayer.NearestLatitude(),
 		PreciseToSeconds:    true,
-	}, 2023)
+	}, 2023, 0)
 	return schedules
 }

@@ -26,7 +26,7 @@ func testCalculate(t *testing.T, td datatest.TestData) {
 		AsrConvention:       prayer.Shafii,
 		HighLatitudeAdapter: prayer.NearestLatitude(),
 		PreciseToSeconds:    true,
-	}, 2023)
+	}, 2023, 0)
 
 	msg := fmt.Sprintf("schedule in %s has error: %v", td.Name, err)
 	assertNil(t, err, msg)

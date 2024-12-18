@@ -7,7 +7,7 @@ import (
 	"github.com/hablullah/go-sampa"
 )
 
-func calcNormal(cfg Config, year int) ([]Schedule, int) {
+func calcNormal(cfg Config, year int, month int) ([]Schedule, int) {
 	// Prepare location
 	location := sampa.Location{
 		Latitude:  cfg.Latitude,
@@ -43,11 +43,25 @@ func calcNormal(cfg Config, year int) ([]Schedule, int) {
 		},
 	}}
 
-	// Calculate schedules for each day in a year.
-	start := time.Date(year, 1, 1, 0, 0, 0, 0, cfg.Timezone)
-	limit := start.AddDate(1, 0, 0)
-	nDays := int(limit.Sub(start).Hours() / 24)
+	if month < 0 || month > 12 {
+		panic("Invalid month: month must be between 1 and 12")
+	}
+	now := time.Now()
+	limitYear := year - now.Year()
 
+	if month == 0 {
+		limitYear++
+	}
+
+	startMonth := 1
+	if month > 0 {
+		startMonth = int(now.Month())
+	}
+
+	// Create time range for calculations
+	start := time.Date(year, time.Month(startMonth), 1, 0, 0, 0, 0, cfg.Timezone)
+	limit := start.AddDate(limitYear, month, 0)
+	nDays := int(limit.Sub(start).Hours() / 24)
 	// Create slice to contain result
 	schedules := make([]Schedule, nDays)
 

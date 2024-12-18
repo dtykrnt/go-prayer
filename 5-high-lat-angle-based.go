@@ -20,7 +20,7 @@ func AngleBased() HighLatitudeAdapter {
 	return highLatAngleBased
 }
 
-func highLatAngleBased(cfg Config, year int, schedules []Schedule) []Schedule {
+func highLatAngleBased(cfg Config, year int, month int, schedules []Schedule) []Schedule {
 	// Fetch the twilight angle
 	var fajrAngle, ishaAngle float64
 	if cfg.TwilightConvention != nil {

@@ -13,7 +13,7 @@ func NearestLatitudeAsIs() HighLatitudeAdapter {
 	return highLatNearestLatitudeAsIs
 }
 
-func highLatNearestLatitudeAsIs(cfg Config, year int, _ []Schedule) []Schedule {
+func highLatNearestLatitudeAsIs(cfg Config, year int, month int, _ []Schedule) []Schedule {
 	// Get the nearest latitude
 	latitude := cfg.Latitude
 	if latitude > 45 {
@@ -29,6 +29,6 @@ func highLatNearestLatitudeAsIs(cfg Config, year int, _ []Schedule) []Schedule {
 		Timezone:           cfg.Timezone,
 		TwilightConvention: cfg.TwilightConvention,
 		AsrConvention:      cfg.AsrConvention}
-	newSchedules, _ := calcNormal(newCfg, year)
+	newSchedules, _ := calcNormal(newCfg, year, month)
 	return newSchedules
 }

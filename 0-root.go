@@ -62,7 +62,7 @@ type TwilightConvention struct {
 
 // HighLatitudeAdapter is function for calculating prayer times in area with latitude
 // >45 degrees. Check out https://www.prayertimes.dk/story.html for why this is needed.
-type HighLatitudeAdapter func(cfg Config, year int, currentSchedules []Schedule) []Schedule
+type HighLatitudeAdapter func(cfg Config, year int, month int, currentSchedules []Schedule) []Schedule
 
 // Config is configuration that used to calculate the prayer times.
 type Config struct {
@@ -107,7 +107,7 @@ type Config struct {
 }
 
 // Calculate calculates the prayer time for the entire year with specified configuration.
-func Calculate(cfg Config, year int) ([]Schedule, error) {
+func Calculate(cfg Config, year int, month int) ([]Schedule, error) {
 	// Apply default config
 	if cfg.Timezone == nil {
 		cfg.Timezone = time.UTC
@@ -118,11 +118,11 @@ func Calculate(cfg Config, year int) ([]Schedule, error) {
 	}
 
 	// Calculate the schedules
-	schedules, nAbnormal := calcNormal(cfg, year)
+	schedules, nAbnormal := calcNormal(cfg, year, month)
 
 	// Apply high latitude adapter
 	if nAbnormal > 0 && cfg.HighLatitudeAdapter != nil {
-		schedules = cfg.HighLatitudeAdapter(cfg, year, schedules)
+		schedules = cfg.HighLatitudeAdapter(cfg, year, month, schedules)
 	}
 
 	// Final check
