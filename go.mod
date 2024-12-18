@@ -1,4 +1,4 @@
-module github.com/hablullah/go-prayer
+module github.com/dtykrnt/go-prayer
 
 go 1.20
 
