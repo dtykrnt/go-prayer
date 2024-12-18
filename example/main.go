@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/hablullah/go-prayer"
+	"github.com/dtykrnt/go-prayer"
 )
 
 func main() {

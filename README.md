@@ -20,7 +20,7 @@ Go Prayer is a Go package for calculating prayer/salah times for an entire year 
 To use this package, make sure your project use Go 1.20 or above, then run the following command via terminal:
 
 ```
-go get -u -v github.com/hablullah/go-prayer
+go get -u -v github.com/dtykrnt/go-prayer
 ```
 
 ## Features
@@ -42,7 +42,7 @@ package main
 import (
 	"time"
 
-	"github.com/hablullah/go-prayer"
+	"github.com/dtykrnt/go-prayer"
 )
 
 func main() {

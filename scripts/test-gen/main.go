@@ -35,7 +35,7 @@ func genCommonFiles(dstDir string) error {
 		"regexp"
 		"strconv"
 
-		"github.com/hablullah/go-prayer"
+		"github.com/dtykrnt/go-prayer"
 	)` + "\n\n")
 
 	sb.WriteString("var rxDT = regexp.MustCompile(`" +
@@ -98,7 +98,7 @@ func genTestData(loc Location, dstDir string) error {
 	sb.WriteString(`import (
 		"time"
 		
-		"github.com/hablullah/go-prayer"
+		"github.com/dtykrnt/go-prayer"
 	)` + "\n")
 
 	// Put the variable for timezone
