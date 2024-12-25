@@ -7,7 +7,7 @@ import (
 	"github.com/hablullah/go-sampa"
 )
 
-func calcNormal(cfg Config, year int, month int) ([]Schedule, int) {
+func calcNormal(cfg Config, year int, month int, day int) ([]Schedule, int) {
 	// Prepare location
 	location := sampa.Location{
 		Latitude:  cfg.Latitude,
@@ -46,7 +46,7 @@ func calcNormal(cfg Config, year int, month int) ([]Schedule, int) {
 	if month < 0 || month > 12 {
 		panic("Invalid month: month must be between 1 and 12")
 	}
-	now := time.Now()
+	now := time.Now().In(cfg.Timezone)
 	limitYear := year - now.Year()
 
 	if month == 0 {
@@ -68,6 +68,34 @@ func calcNormal(cfg Config, year int, month int) ([]Schedule, int) {
 	// Calculate each day
 	var idx int
 	var nAbnormal int
+
+	if day > 0 {
+		dt := time.Date(year, time.Month(startMonth), day, 0, 0, 0, 0, cfg.Timezone)
+
+		e, _ := sampa.GetSunEvents(dt, location, nil, customEvents...)
+
+		s := Schedule{
+			Date:    dt.Format("2006-01-02"),
+			Fajr:    e.Others["fajr"].DateTime,
+			Sunrise: e.Sunrise.DateTime,
+			Zuhr:    e.Transit.DateTime,
+			Asr:     e.Others["asr"].DateTime,
+			Maghrib: e.Sunset.DateTime,
+			Isha:    e.Others["isha"].DateTime,
+		}
+
+		dawn := e.Others["dawn"].DateTime
+		dusk := e.Others["dusk"].DateTime
+		hasNight := !e.Sunrise.IsZero() && !e.Sunset.IsZero()
+		hasTwilight := !dawn.IsZero() && !dusk.IsZero()
+		s.IsNormal = hasNight && hasTwilight
+
+		if !s.IsNormal {
+			nAbnormal++
+		}
+		return []Schedule{s}, nAbnormal
+	}
+
 	for dt := start; dt.Before(limit); dt = dt.AddDate(0, 0, 1) {
 		// Calculate the events
 		e, _ := sampa.GetSunEvents(dt, location, nil, customEvents...)

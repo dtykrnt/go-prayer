@@ -17,7 +17,7 @@ func LocalRelativeEstimation() HighLatitudeAdapter {
 	return highLatLocalRelativeEstimation
 }
 
-func highLatLocalRelativeEstimation(cfg Config, year int, month int, schedules []Schedule) []Schedule {
+func highLatLocalRelativeEstimation(cfg Config, year int, month int, day int, schedules []Schedule) []Schedule {
 	var (
 		nFajrSample     int
 		nIshaSample     int
