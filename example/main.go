@@ -17,22 +17,25 @@ func main() {
 		TwilightConvention: prayer.Kemenag(),
 		AsrConvention:      prayer.Shafii,
 		PreciseToSeconds:   true,
-	}, 2024, 1)
+	}, 2024, 12, 25)
 	print(jakartaSchedules)
+	// for i := 0; i < len(jakartaSchedules); i++ {
+	// 	fmt.Println("schedule day ", i, jakartaSchedules[i].Fajr.Format("15:04"))
+	// }
 
 	// Calculate prayer schedule in London for 2024.
 	// Since London in higher latitude, make sure to enable the adapter.
-	europeLondon, _ := time.LoadLocation("Europe/London")
-	londonSchedules, _ := prayer.Calculate(prayer.Config{
-		Latitude:            51.507222,
-		Longitude:           -0.1275,
-		Timezone:            europeLondon,
-		TwilightConvention:  prayer.ISNA(),
-		AsrConvention:       prayer.Shafii,
-		HighLatitudeAdapter: prayer.NearestLatitude(),
-		PreciseToSeconds:    true,
-	}, 2024, 2)
-	print(londonSchedules)
+	// europeLondon, _ := time.LoadLocation("Europe/London")
+	// londonSchedules, _ := prayer.Calculate(prayer.Config{
+	// 	Latitude:            51.507222,
+	// 	Longitude:           -0.1275,
+	// 	Timezone:            europeLondon,
+	// 	TwilightConvention:  prayer.ISNA(),
+	// 	AsrConvention:       prayer.Shafii,
+	// 	HighLatitudeAdapter: prayer.NearestLatitude(),
+	// 	PreciseToSeconds:    true,
+	// }, 2024, 2)
+	// print(londonSchedules)
 }
 
 func print(schedules []prayer.Schedule) {
