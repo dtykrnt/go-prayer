@@ -22,7 +22,7 @@ func ShariNormalDay() HighLatitudeAdapter {
 	return highLatShariNormalDay
 }
 
-func highLatShariNormalDay(cfg Config, year int, month int, schedules []Schedule) []Schedule {
+func highLatShariNormalDay(cfg Config, year int, month int, day int, schedules []Schedule) []Schedule {
 	// Get the nearest latitude
 	latitude := cfg.Latitude
 	if latitude > 45 {
@@ -38,7 +38,7 @@ func highLatShariNormalDay(cfg Config, year int, month int, schedules []Schedule
 		Timezone:           cfg.Timezone,
 		TwilightConvention: cfg.TwilightConvention,
 		AsrConvention:      cfg.AsrConvention}
-	nearestSchedules, _ := calcNormal(newCfg, year, month)
+	nearestSchedules, _ := calcNormal(newCfg, year, month, day)
 
 	// Apply schedules for the abnormal days using schedules from nearest latitude
 	// with transit as common point.

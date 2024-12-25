@@ -22,7 +22,7 @@ func Mecca() HighLatitudeAdapter {
 	return highLatMecca
 }
 
-func highLatMecca(cfg Config, year int, month int, schedules []Schedule) []Schedule {
+func highLatMecca(cfg Config, year int, month int, day int, schedules []Schedule) []Schedule {
 	// Additional rule: day is normal if daylength is more than 4 hour
 	for i, s := range schedules {
 		if s.IsNormal {
@@ -45,7 +45,7 @@ func highLatMecca(cfg Config, year int, month int, schedules []Schedule) []Sched
 		Timezone:           meccaTz,
 		TwilightConvention: cfg.TwilightConvention,
 		AsrConvention:      cfg.AsrConvention}
-	meccaSchedules, _ := calcNormal(meccaCfg, year, month)
+	meccaSchedules, _ := calcNormal(meccaCfg, year, month, day)
 
 	// Apply Mecca schedules in abnormal period by matching it with duration
 	// in Mecca using transit time (noon) as the base.
